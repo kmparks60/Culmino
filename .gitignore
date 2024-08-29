@@ -1,0 +1,14 @@
+# Ignore the .env file
+.env
+
+#Ignore to_do.txt file
+to_do.txt
+
+#Ignore venv folder
+venv
+
+#Ignore pycache folder
+application/__pycache__
+
+#Ignore Culmino Logo
+culmino.png

@@ -10,7 +10,7 @@ def get_todos():
 	todos = []
 	for todo in db.todos.find().sort("date_created", -1):
 		todo["_id"] = str(todo["_id"])
-		todo["date_created"] = todo["date_created"].strftime("%b %d %Y %H:%M%S")
+		todo["date_created"] = todo["date_created"].strftime("%b %d %Y %H:%M:%S")
 		todos.append(todo)
 	return render_template("view_todos.html", title="Layout Page", todos=todos)
 

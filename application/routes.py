@@ -28,7 +28,7 @@ def add_todo():
 			"completed": completed,
 			"date_created": datetime.now()
 		})
-		flash("Todo successfully added", "success")
+		flash("Note successfully added", "success")
 		return redirect("/")
 	else:
 		form = TodoForm()
@@ -49,7 +49,7 @@ def update_todo(id):
 			"date_created": datetime.now()
 		}})
 
-		flash("ToDo successfully updated", "success")
+		flash("Note successfully updated", "success")
 		return redirect("/")
 	
 	else:
@@ -65,5 +65,5 @@ def update_todo(id):
 @app.route("/delete_todo/<id>")
 def delete_todo(id):
 	db.todos.find_one_and_delete({"_id": ObjectId(id)})
-	flash("ToDo deleted", "success")
+	flash("Note successfully deleted", "success")
 	return redirect("/")

@@ -4,47 +4,47 @@
 	<form action="" method="POST">
 		{{ form.csrf_token() }}
 		<fieldset class="form-group">
-			<legend>Add Todo</legend>
+			<h2 class="row justify-content-center my-3 text-muted">Add Note</h2>
 
 			<div class="form-group">
-				{{ form.name.label(class="formcontrol-label") }}
+				{{ form.name.label(class="form-control-label") }}
 				{% if form.name.errors %}
-					{{ form.name(class="form-control form-control is-invalid") }}
+					{{ form.name(class="form-control is-invalid") }}
 					{% for error in form.name.errors %}
-					<div class="invalid-feedback">
+					<div class="invalid-feedback" id="nameError">
 						<span>{{ error }}</span>
 					</div>
 					{% endfor %}
 				{% else %}
-					{{ form.name(class="form-control form-control") }}
+					{{ form.name(class="form-control") }}
 				{% endif %}
 			</div>
 
 			<div class="form-group">
 				{{ form.description.label(class="form-control-label") }}
 				{% if form.description.errors %}
-					{{ form.description(class="form-control form-control is-invalid") }}
+					{{ form.description(class="form-control is-invalid") }}
 					{% for error in form.description.errors %}
-						<div class="invalid-feedback">
+						<div class="invalid-feedback" id="descriptionError">
 							<span>{{ error }}</span>
 						</div>
 					{% endfor %}
 				{% else %}
-					{{ form.description(class="form-control form-control") }}
+					{{ form.description(class="form-control") }}
 				{% endif %}
 			</div>
 
 			<div class="form-group">
 				{{ form.completed.label(class="form-control-label") }}
 				{% if form.completed.errors %}
-					{{ form.completed.label(class="form-control-label form-control is-invalid") }}
+					{{ form.completed(class="form-control is-invalid") }}
 					{% for error in form.completed.errors %}
-						<div class="invalid-feedback">
+						<div class="invalid-feedback" id="completedError">
 							<span>{{ error }}</span>
 						</div>
 					{% endfor %}
 				{% else %}
-					{{ form.completed(class="form-control form-control") }}
+					{{ form.completed(class="form-control") }}
 				{% endif %}
 			</div>
 

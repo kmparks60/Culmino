@@ -13,14 +13,14 @@
 <header>
 	<nav class="navbar navbar-expand-lg navbar-dark" style="background-color: #4b8dd3;">
 		<div class="collapse navbar-collapse" id="navbarSupportedContent">
-			<ul class="navbar-nav me-auto ps-3">
+			<ul class="navbar-nav">
 				<li class="nav-item dropdown">
-					<a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-						<i class="fa-solid fa-bars fa-2xl" style="color: #85144b;"></i>
+					<a class="nav-link ps-4 dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+						<i class="fa-solid fa-bars fa-xl" style="color: #85144b;"></i>
 					</a>
 					<ul class="dropdown-menu" aria-labelledby="navbarDropdown">
 						<li><a class="dropdown-item" href="{{ url_for('get_todos') }}">Home</a></li>
-						<li><a class="dropdown-item" href="{{ url_for('add_todo') }}">Add Todo</a></li>
+						<li><a class="dropdown-item" href="{{ url_for('add_todo') }}">Add Note</a></li>
 						<li><a class="dropdown-item" href="#">Categories</a></li>
 						<li><a class="dropdown-item" href="#">Starred</a></li>
 						<li><a class="dropdown-item" href="#">Deleted</a></li>
@@ -29,11 +29,11 @@
 					</ul>
 				</li>
 			</ul>
-			<a class="navbar-brand mx-auto" href="{{ url_for('get_todos') }}">Culmino</a>
-			<ul class="navbar-nav ms-auto pe-3">
+			<a class="navbar-brand ms-auto display-1 fs-2 justify-content-center" href="{{ url_for('get_todos') }}">Culmino</a>
+			<ul class="navbar-nav ms-auto">
 				<li class="nav-item">
 					<a class="nav-link" href="#">
-						<i class="fas fa-user-circle fa-xl"></i>
+						<i class="fas fa-user-circle fa-2xl"></i>
 					</a>
 				</li>
 			</ul>
@@ -43,7 +43,6 @@
 		</button>
 	</nav>
 </header>
-
 <main class="container-fluid">
 	<div class="row justify-content-center">
 		<div class="col-md-6 col-lg-5 px-4">

@@ -1,9 +1,10 @@
 {% extends "layout.html" %}
 {% block content %}
+<h2 class="row justify-content-center my-3 text-muted">Notes</h2>
 	{% for todo in todos %}
-		<div class="card p-1 m-3">
-			<div class="card-body">
-				<a 	href="{{ url_for('delete_todo', id = todo._id) }}" 
+	<div class="card p-1 m-3">
+		<div class="card-body">
+			<a 	href="{{ url_for('delete_todo', id = todo._id) }}" 
 					class="position-absolute top-0 end-0 m-2 pe-1"
 					style="text-decoration: none;">
 					<i class="fa-solid fa-x fa-lg" style="color: #1a31e0;"></i>

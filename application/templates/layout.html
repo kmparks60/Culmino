@@ -70,36 +70,44 @@
 
 <!-- Add Note Modal -->
 <div class="modal fade" id="addNoteModal" tabindex="-1" aria-labelledby="addNoteModalLabel" aria-hidden="true">
-	<div class="modal-dialog modal-dialog-centered">
+	<div class="modal-dialog modal-dialog-centered" style="max-width: 600px;">
 		<div class="modal-content">
-			<div class="modal-header bg-primary text-white">
+			<div class="modal-header" style="background-color: #85144b; color: white;">
 				<h5 class="modal-title" id="addNoteModalLabel">Add Note</h5>
 				<button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
 			</div>
-			<div class="modal-body p-4">
+			<div class="modal-body" style="padding: 2rem;">
 				<form action="{{ url_for('add_todo') }}" method="POST">
 					{{ form.csrf_token() }}
 					<div class="mb-3">
-						{{ form.name.label(class="form-label fw-bold text-muted") }}
+						<label for="{{ form.name.id }}" class="form-label" style="color: #85144b; font-weight: bold;">
+							{{ form.name.label.text }}
+						</label>
 						{{ form.name(class="form-control") }}
 						{% for error in form.name.errors %}
 						<div class="text-danger">{{ error }}</div>
 						{% endfor %}
 					</div>
 					<div class="mb-3">
-						{{ form.description.label(class="form-label fw-bold text-muted") }}
+						<label for="{{ form.description.id }}" class="form-label" style="color: #85144b; font-weight: bold;">
+							{{ form.description.label.text }}
+						</label>
 						{{ form.description(class="form-control") }}
 						{% for error in form.description.errors %}
 						<div class="text-danger">{{ error }}</div>
 						{% endfor %}
 					</div>
-					<div class="form-check mb-3">
-						{{ form.completed(class="form-check-input") }}
-						{{ form.completed.label(class="form-check-label") }}
+					<div class="mb-3">
+						<label for="{{ form.completed.id }}" class="form-label" style="color: #85144b; font-weight: bold;">
+							{{ form.completed.label.text }}
+						</label>
+						{{ form.completed(class="form-control", style="width: 100%;") }}
+						{% for error in form.completed.errors %}
+						<div class="text-danger">{{ error }}</div>
+						{% endfor %}
 					</div>
-					<div class="modal-footer border-top-0">
-						<button type="submit" class="btn btn-primary">Add Note</button>
-						<button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+					<div class="modal-footer" style="border-top: 0; padding: 0;">
+						<button type="submit" class="btn" style="background-color: #85144b; color: white;">Add Note</button>
 					</div>
 				</form>
 			</div>

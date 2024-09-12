@@ -12,3 +12,6 @@ application/__pycache__
 
 #Ignore Culmino Logo
 culmino.png
+
+#Ignore add_todo.html file
+add_todo.html

@@ -1,5 +1,6 @@
 from application import app
-from flask import render_template, flash, redirect, request, url_for
+from flask import render_template, request, redirect, flash
+from datetime import datetime
 from .forms import TodoForm
 from bson import ObjectId
 from application import db
@@ -8,16 +9,17 @@ from datetime import datetime
 @app.route("/")
 def get_todos():
 	todos = []
+	form = TodoForm()
 	for todo in db.todos.find().sort("date_created", -1):
 		todo["_id"] = str(todo["_id"])
 		todo["date_created"] = todo["date_created"].strftime("%b %d %Y %H:%M:%S")
 		todos.append(todo)
-	return render_template("view_todos.html", title="Layout Page", todos=todos)
+	return render_template("view_todos.html", title="Layout Page", todos=todos, form=form)
 
 @app.route("/add_todo", methods = ['POST', 'GET'])
 def add_todo():
-	if request.method == "POST":
-		form = TodoForm(request.form)
+	form = TodoForm(request.form)
+	if form.validate_on_submit():
 		todo_name = form.name.data
 		todo_description = form.description.data
 		completed = form.completed.data
@@ -29,10 +31,9 @@ def add_todo():
 			"date_created": datetime.now()
 		})
 		flash("Note successfully added", "success")
-		return redirect("/")
 	else:
-		form = TodoForm()
-	return render_template("add_todo.html", form = form)
+		flash("Failed to add note. Please check the form.", "danger")
+	return redirect("/")
 
 @app.route("/update_todo/<id>", methods = ["POST", "GET"])
 def update_todo(id):

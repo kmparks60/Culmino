@@ -1,0 +1,39 @@
+{% extends "layout.html" %}
+{% block content %}
+<div>
+	<h2 class="row justify-content-center my-3 text-muted">Update Note</h2>
+	<form action="{{ url_for('update_todo', id=todo_id) }}" method="POST">
+		{{ form.csrf_token() }}
+		<div class="mb-3">
+			<label for="{{ form.name.id }}" class="form-label" style="color: #85144b; font-weight: bold;">
+				{{ form.name.label.text }}
+			</label>
+			{{ form.name(class="form-control") }}
+			{% for error in form.name.errors %}
+			<div class="text-danger">{{ error }}</div>
+			{% endfor %}
+		</div>
+		<div class="mb-3">
+			<label for="{{ form.description.id }}" class="form-label" style="color: #85144b; font-weight: bold;">
+				{{ form.description.label.text }}
+			</label>
+			{{ form.description(class="form-control") }}
+			{% for error in form.description.errors %}
+			<div class="text-danger">{{ error }}</div>
+			{% endfor %}
+		</div>
+		<div class="mb-3">
+			<label for="{{ form.completed.id }}" class="form-label" style="color: #85144b; font-weight: bold;">
+				{{ form.completed.label.text }}
+			</label>
+			{{ form.completed(class="form-control", style="width: 100%;") }}
+			{% for error in form.completed.errors %}
+			<div class="text-danger">{{ error }}</div>
+			{% endfor %}
+		</div>
+		<div class="modal-footer" style="border-top: 0; padding: 0;">
+			<button type="submit" class="btn" style="background-color: #85144b; color: white;">Update</button>
+		</div>
+	</form>
+</div>
+{% endblock %}

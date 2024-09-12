@@ -61,7 +61,7 @@ def update_todo(id):
 		form.description.data = todo.get("description", None)
 		form.completed.data = todo.get("completed", None)
 
-	return render_template("add_todo.html", form = form)
+	return render_template("update_todos.html", form = form, todo_id=id)
 
 @app.route("/delete_todo/<id>")
 def delete_todo(id):

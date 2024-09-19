@@ -1,26 +1,75 @@
 {% extends "layout.html" %}
 {% block content %}
-<h2 class="row justify-content-center my-3 text-muted">Notes</h2>
-	{% for todo in todos %}
-	<div class="card p-1 m-3">
-		<div class="card-body">
-			<a href="{{ url_for('delete_todo', id = todo._id) }}" 
-					class="position-absolute top-0 end-0 m-2 pe-1"
-					style="text-decoration: none;">
+	{% if session.get('username') %}
+		<span class="row justify-content-center my-3 text-muted fs-3 fw-bold">{{ session.get('username') }}'s Notes</span>
+		{% for todo in todos %}
+			<div class="card p-1 m-3 shadow" style="border-radius: 15px; border: 2px solid #4b8dd3; background-color: #f7f9fc;">
+				<div class="card-body" style="position: relative;">
+					<a href="{{ url_for('delete_todo', id=todo._id) }}" class="position-absolute top-0 end-0 m-2 pe-1" style="text-decoration: none;">
+						<i class="fa-solid fa-x fa-lg" style="color: #85144b;"></i>
+					</a>
+
+					{% if todo.completed == "False" or not todo.completed %}
+						<h4 class="card-title" style="color: #4b8dd3; font-weight: bold;">{{ todo.name }}</h4>
+					{% else %}
+						<h4 class="card-title" style="color: #85144b; font-weight: bold;">
+							<del>{{ todo.name }}</del>
+						</h4>
+					{% endif %}
+
+					<p class="card-text" style="color: #6c757d; font-size: 0.9rem;">
+						<strong>Created on: </strong>{{ todo.date_created }}
+					</p>
+					<p class="card-text" style="color: #333; font-size: 1.1rem;">{{ todo.description }}</p>
+
+					{% if todo.shared_with %}
+						<p class="card-text" style="color: #6c757d; font-size: 0.9rem;">
+							<strong>Shared with: </strong>{{ todo.shared_with | join(', ') }}
+						</p>
+					{% endif %}
+
+					<a href="{{ url_for('update_todo', id=todo._id) }}" class="btn btn-outline-info btn-sm" style="background-color: #85144b; color: white; border: none;">
+						Update
+					</a>
+				</div>
+			</div>
+		{% endfor %}
+	{% else %}
+		<div class="card p-1 m-3 shadow" style="border-radius: 15px; border: 2px solid #85144b; background-color: #f9f3f3;">
+			<div class="card-body" style="position: relative;">
+				<a href="#" class="position-absolute top-0 end-0 m-2 pe-1" style="text-decoration: none;">
 					<i class="fa-solid fa-x fa-lg" style="color: #85144b;"></i>
-			</a>
-				
-				{% if todo.completed == "True" %}
-					<h5 class="card-title"><del>{{ todo.name }}</del></h5>
-				{% else %}
-					<h5 class="card-title">{{ todo.name }}</h5>
-				{% endif %}
-
-				<p class="card-text text-muted">{{ todo.date_created }}</p>
-				<p class="card-text text-muted">{{ todo.description }}</p>
-
-				<a href="{{ url_for('update_todo', id = todo._id) }}" class="btn btn-outline-info btn-sm">Update</a>
+				</a>
+				<h5 class="card-title" style="color: #4b8dd3; font-weight: bold;">Explore Culmino!</h5>
+				<p class="card-text" style="color: #6c757d;">Discover how Culmino helps you stay organized and productive with your tasks and notes.</p>
+				<a href="#" class="btn btn-outline-info btn-sm" style="background-color: #4b8dd3; color: white; border: none;">
+					Learn More
+				</a>
 			</div>
 		</div>
-	{% endfor %}
+		<div class="card p-1 m-3 shadow" style="border-radius: 15px; border: 2px solid #4b8dd3; background-color: #f7f9fc;">
+			<div class="card-body" style="position: relative;">
+				<a href="#" class="position-absolute top-0 end-0 m-2 pe-1" style="text-decoration: none;">
+						<i class="fa-solid fa-x fa-lg" style="color: #85144b;"></i>
+				</a>
+				<h5 class="card-title" style="color: #4b8dd3; font-weight: bold;">Why Sign Up?</h5>
+				<p class="card-text" style="color: #6c757d;">Join Culmino today and start managing your tasks effectively while collaborating with others.</p>
+				<a href="#" class="btn btn-outline-info btn-sm" style="background-color: #85144b; color: white; border: none;">
+					Sign Up
+				</a>
+			</div>
+		</div>
+		<div class="card p-1 m-3 shadow" style="border-radius: 15px; border: 2px solid #4b8dd3; background-color: #f7f9fc;">
+			<div class="card-body" style="position: relative;">
+				<a href="#" class="position-absolute top-0 end-0 m-2 pe-1" style="text-decoration: none;">
+					<i class="fa-solid fa-x fa-lg" style="color: #85144b;"></i>
+				</a>
+				<h5 class="card-title" style="color: #4b8dd3; font-weight: bold;">Get Started</h5>
+				<p class="card-text" style="color: #6c757d;">Ready to start organizing your life? Get started with Culmino and see the difference.</p>
+				<a href="#" class="btn btn-outline-info btn-sm" style="background-color: #4b8dd3; color: white; border: none;">
+					Get Started
+				</a>
+			</div>
+		</div>
+	{% endif %}
 {% endblock content %}

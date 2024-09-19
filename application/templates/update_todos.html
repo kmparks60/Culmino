@@ -31,7 +31,16 @@
 			<div class="text-danger">{{ error }}</div>
 			{% endfor %}
 		</div>
-		<div class="modal-footer" style="border-top: 0; padding: 0;">
+		<div class="mb-3"></div>
+			<label for="{{ form.share_with.id }}" class="form-label" style="color: #85144b; font-weight: bold;">
+				Share With
+			</label>
+			<input type="text" name="share_with" id="{{ form.share_with.id }}" class="form-control" value="{{ form.share_with.data }}" placeholder="Enter usernames separated by commas">
+			{% for error in form.share_with.errors %}
+			<div class="text-danger">{{ error }}</div>
+			{% endfor %}
+		</div>
+		<div class="modal-footer my-3" style="border-top: 0; padding: 0;">
 			<button type="submit" class="btn" style="background-color: #85144b; color: white;">Update</button>
 		</div>
 	</form>

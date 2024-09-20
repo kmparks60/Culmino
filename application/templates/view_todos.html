@@ -8,25 +8,35 @@
 					<a href="{{ url_for('delete_todo', id=todo._id) }}" class="position-absolute top-0 end-0 m-2 pe-1" style="text-decoration: none;">
 						<i class="fa-solid fa-x fa-lg" style="color: #85144b;"></i>
 					</a>
-
+					
 					{% if todo.completed == "False" or not todo.completed %}
 						<h4 class="card-title" style="color: #4b8dd3; font-weight: bold;">{{ todo.name }}</h4>
-					{% else %}
+						{% else %}
 						<h4 class="card-title" style="color: #85144b; font-weight: bold;">
 							<del>{{ todo.name }}</del>
 						</h4>
-					{% endif %}
-
+						{% endif %}
+						
 					<p class="card-text" style="color: #6c757d; font-size: 0.9rem;">
 						<strong>Created on: </strong>{{ todo.date_created }}
 					</p>
-					<p class="card-text" style="color: #333; font-size: 1.1rem;">{{ todo.description }}</p>
-
+					
+					{% if todo.creator and todo.creator != session.get('username') %}
+						<p class="card-text" style="color: #6c757d; font-size: 0.9rem;">
+							<strong>From: </strong>{{ todo.creator }}
+						</p>
+					{% endif %}
+						
+					
 					{% if todo.shared_with %}
 						<p class="card-text" style="color: #6c757d; font-size: 0.9rem;">
 							<strong>Shared with: </strong>{{ todo.shared_with | join(', ') }}
 						</p>
 					{% endif %}
+
+					<p class="card-text" style="color: #333; font-size: 1.1rem;">{{ todo.description }}</p>
+
+
 
 					<a href="{{ url_for('update_todo', id=todo._id) }}" class="btn btn-outline-info btn-sm" style="background-color: #85144b; color: white; border: none;">
 						Update

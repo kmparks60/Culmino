@@ -76,7 +76,7 @@ def update_todo(id):
 		todo = db.todos.find_one_or_404({"_id": ObjectId(id)})
 		form.name.data = todo.get("name", None)
 		form.description.data = todo.get("description", None)
-		form.completed.data = todo.get("completed", None)
+		form.completed.data = todo.get("completed", False)
 		form.share_with.data = ','.join(todo.get("shared_with", []))
 
 	return render_template("update_todos.html", form = form, todo_id=id)

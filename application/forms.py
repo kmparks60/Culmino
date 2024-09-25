@@ -1,11 +1,11 @@
 from flask_wtf import FlaskForm
-from wtforms import StringField, TextAreaField, SelectField, SubmitField, PasswordField, HiddenField
+from wtforms import StringField, TextAreaField, BooleanField, SubmitField, PasswordField, HiddenField
 from wtforms.validators import DataRequired, Email, EqualTo
 
 class TodoForm(FlaskForm):
 	name = StringField('Name', validators=[DataRequired()])
 	description = TextAreaField('Description',validators=[DataRequired()])
-	completed = SelectField('Completed', choices = [("False", "False"), ("True", "True")], validators = [DataRequired()])
+	completed = BooleanField('Completed')
 	share_with = StringField('Share with user: (use commas to separate usernames)')
 	user_id = HiddenField()
 	submit = SubmitField("Submit")

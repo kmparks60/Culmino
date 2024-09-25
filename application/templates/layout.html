@@ -77,57 +77,60 @@
 	</div>
 </main>
 <!-- Add Note Modal -->
-<div class="modal fade" id="addNoteModal" tabindex="-1" aria-labelledby="addNoteModalLabel" aria-hidden="true">
-	<div class="modal-dialog modal-dialog-centered" style="max-width: 600px;">
-		<div class="modal-content" style="background-color: #fff; box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); border-radius: 8px;">
-			<div class="modal-header" style="background-color: #85144b; color: white;">
-				<h5 class="modal-title" id="addNoteModalLabel">Add Note</h5>
-				<button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
-			</div>
-			<div class="modal-body" style="padding: 2rem;">
-				<form action="{{ url_for('add_todo') }}" method="POST">
-					{{ form.csrf_token() }}
-					<div class="mb-3">
-						<label for="{{ form.name.id }}" class="form-label" style="color: #85144b; font-weight: bold;">
-							{{ form.name.label.text }}
-						</label>
-						{{ form.name(class="form-control") }}
-						{% for error in form.name.errors %}
-						<div class="text-danger">{{ error }}</div>
-						{% endfor %}
-					</div>
-					<div class="mb-3">
-						<label for="{{ form.description.id }}" class="form-label" style="color: #85144b; font-weight: bold;">
-							{{ form.description.label.text }}
-						</label>
-						{{ form.description(class="form-control") }}
-						{% for error in form.description.errors %}
-						<div class="text-danger">{{ error }}</div>
-						{% endfor %}
-					</div>
-					<div class="mb-3">
-						<label for="{{ form.completed.id }}" class="form-label" style="color: #85144b; font-weight: bold;">
-							{{ form.completed.label.text }}
-						</label>
-						{{ form.completed(class="form-control", style="width: 100%;") }}
-						{% for error in form.completed.errors %}
-						<div class="text-danger">{{ error }}</div>
-						{% endfor %}
-					</div>
-					<div class="mb-3">
-						<label for="{{ form.share_with.id }}" class="form-label" style="color: #85144b; font-weight: bold;">
-							Share with user: (use commas to separate usernames)
-						</label>
-						{{ form.share_with(class="form-control") }}
-					</div>
-					<div class="modal-footer" style="border-top: 0; padding: 0;">
-						<button type="submit" class="btn" style="background-color: #85144b; color: white;">Add Note</button>
-					</div>
-				</form>
+	<div class="modal fade" id="addNoteModal" tabindex="-1" aria-labelledby="addNoteModalLabel" aria-hidden="true">
+		<div class="modal-dialog modal-dialog-centered" style="max-width: 600px;">
+			<div class="modal-content" style="background-color: #fff; box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); border-radius: 8px;">
+				<div class="modal-header" style="background-color: #85144b; color: white;">
+					<h5 class="modal-title" id="addNoteModalLabel">Add Note</h5>
+					<button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
+				</div>
+				<div class="modal-body" style="padding: 2rem;">
+					<form action="{{ url_for('add_todo') }}" method="POST">
+						{{ form.csrf_token() }}
+						<div class="mb-3">
+							<label for="{{ form.name.id }}" class="form-label" style="color: #85144b; font-weight: bold;">
+								{{ form.name.label.text }}
+							</label>
+							{{ form.name(class="form-control") }}
+							{% for error in form.name.errors %}
+							<div class="text-danger">{{ error }}</div>
+							{% endfor %}
+						</div>
+						<div class="mb-3">
+							<label for="{{ form.description.id }}" class="form-label" style="color: #85144b; font-weight: bold;">
+								{{ form.description.label.text }}
+							</label>
+							{{ form.description(class="form-control") }}
+							{% for error in form.description.errors %}
+							<div class="text-danger">{{ error }}</div>
+							{% endfor %}
+						</div>
+						<div class="mb-3 d-flex align-items-center">
+							<label for="{{ form.completed.id }}" class="form-label me-2" style="color: #85144b; font-weight: bold;">
+								{{ form.completed.label.text }}
+							</label>
+							<div class="form-check">
+								{{ form.completed(class="form-check-input") }}
+								<label class="form-check-label" for="{{ form.completed.id }}" style="display: inline;">&nbsp;</label>
+							</div>
+							{% for error in form.completed.errors %}
+							<div class="text-danger">{{ error }}</div>
+							{% endfor %}
+						</div>
+						<div class="mb-3">
+							<label for="{{ form.share_with.id }}" class="form-label" style="color: #85144b; font-weight: bold;">
+								Share with user: (use commas to separate usernames)
+							</label>
+							{{ form.share_with(class="form-control") }}
+						</div>
+						<div class="modal-footer" style="border-top: 0; padding: 0;">
+							<button type="submit" class="btn" style="background-color: #85144b; color: white;">Add Note</button>
+						</div>
+					</form>
+				</div>
 			</div>
 		</div>
 	</div>
-</div>
 {% if session.get('username') %}
 	<button class="btn rounded-circle" style="position: fixed; bottom: 20px; right: 20px; z-index: 1000; background-color: #4b8dd3; color: #85144b;" data-bs-toggle="modal" data-bs-target="#addNoteModal">
 		<i class="fas fa-plus"></i>

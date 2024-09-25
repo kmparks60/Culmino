@@ -36,7 +36,7 @@
 		</div>
 		<div class="mb-3"></div>
 			<label for="{{ form.share_with.id }}" class="form-label" style="color: #85144b; font-weight: bold;">
-				Share With
+				Share with user: (use commas to separate usernames)
 			</label>
 			<input type="text" name="share_with" id="{{ form.share_with.id }}" class="form-control" value="{{ form.share_with.data }}" placeholder="Enter usernames separated by commas">
 			{% for error in form.share_with.errors %}

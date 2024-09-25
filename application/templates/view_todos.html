@@ -34,9 +34,9 @@
 						</p>
 					{% endif %}
 
-					<p class="card-text" style="color: #333; font-size: 1.1rem;">{{ todo.description }}</p>
-
-
+					<p class="card-text" style="color: #333; font-size: 1.1rem;">
+						{{ todo.description | nl2br | safe }}
+					</p>
 
 					<a href="{{ url_for('update_todo', id=todo._id) }}" class="btn btn-outline-info btn-sm" style="background-color: #85144b; color: white; border: none;">
 						Update

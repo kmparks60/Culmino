@@ -22,11 +22,14 @@
 			<div class="text-danger">{{ error }}</div>
 			{% endfor %}
 		</div>
-		<div class="mb-3">
-			<label for="{{ form.completed.id }}" class="form-label" style="color: #85144b; font-weight: bold;">
+		<div class="mb-3 d-flex align-items-center">
+			<label for="{{ form.completed.id }}" class="form-label me-2" style="color: #85144b; font-weight: bold;">
 				{{ form.completed.label.text }}
 			</label>
-			{{ form.completed(class="form-control", style="width: 100%;") }}
+			<div class="form-check">
+				{{ form.completed(class="form-check-input") }}
+				<label class="form-check-label" for="{{ form.completed.id }}" style="display: inline;">&nbsp;</label>
+			</div>
 			{% for error in form.completed.errors %}
 			<div class="text-danger">{{ error }}</div>
 			{% endfor %}
